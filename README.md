@@ -9,16 +9,21 @@ git clone https://github.com/Hobr/parallel-monte-carlo
 cd parallel-monte-carlo
 
 echo "use flake" > .envrc
+direnv allow
+
+cargo install just
 
 # C++
-cd cpp
-direnv allow
+just cpp
 
 # Rust
-cd rust
-direnv allow
+just rust
 
 # Bend
-cd bend
-direnv allow
+just bend
+
+# 开发
+just install-dev
+just fmt
+just update
 ```

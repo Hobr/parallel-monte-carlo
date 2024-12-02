@@ -312,3 +312,12 @@ pip-selfcheck.json
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/c,c++,rust,linux,direnv,dotenv,python,virtualenv,visualstudiocode
+
+.cargo
+.rustup
+*.log
+result
+result-*
+.pre-commit-hooks.yaml
+.direnv
+dist/*
