@@ -6,7 +6,15 @@ rust:
   cd rust && cargo run
   cd ../
 
-bend:
+bend-c:
+  cd bend && bend run-c main.bend
+  cd ../
+
+bend-rust:
+  cd bend && bend run-rs main.bend
+  cd ../
+
+bend-cuda:
   cd bend && bend run-cu main.bend
   cd ../
 

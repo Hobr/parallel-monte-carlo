@@ -20,7 +20,10 @@ just cpp
 just rust
 
 # Bend
-just bend
+cargo install hvm bend-lang
+just bend-c
+just bend-rs
+just bend-cuda
 
 # 开发
 just install-dev

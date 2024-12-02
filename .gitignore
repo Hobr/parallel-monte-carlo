@@ -321,3 +321,4 @@ result-*
 .pre-commit-hooks.yaml
 .direnv
 dist/*
+*.hvm

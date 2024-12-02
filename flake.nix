@@ -69,23 +69,20 @@
               # CPP
               clang
               clang-tools
-              mold
-              cmake
+              gcc
               gdb
               llvmPackages.openmp
               mpi
 
               # Rust
               rustToolchain
-
-              # Bend
-              bend
-              hvm
+              mold
 
               # CUDA
               linuxPackages.nvidia_x11_beta
               cudatoolkit
               cudaPackages.cudnn
+              cudaPackages.cuda_cudart
             ];
 
             env = {
