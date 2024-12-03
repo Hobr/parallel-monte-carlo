@@ -1,7 +1,15 @@
-[package]
-name = "parallel-monte-carlo"
+[workspace]
+members = [
+    "algorithm",
+    "frontend",
+]
+resolver = "2"
+
+[workspace.package]
 version = "0.1.0"
 edition = "2021"
+rust-version = "1.83.0"
+authors = ["Hobr<mail@hobr.site>"]
+description = "Track the anime ranks"
 license = "GPL-3.0"
-
-[dependencies]
+repository = "https://github.com/Hobr/parallel-monte-carlo/"
