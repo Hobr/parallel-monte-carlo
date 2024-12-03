@@ -34,7 +34,7 @@
                 rust.fromRustupToolchainFile ./rust-toolchain
               else
                 rust.stable.latest.default.override {
-                  channel = "1.82.0";
+                  channel = "1.83.0";
                   extensions = [
                     "rust-src"
                     "rustfmt"
@@ -45,6 +45,7 @@
                 };
           })
         ];
+
         pkgs = import nixpkgs {
           inherit overlays system;
           config = {
@@ -67,8 +68,6 @@
               pre-commit
 
               # CPP
-              clang
-              clang-tools
               gcc
               gdb
               llvmPackages.openmp
@@ -76,6 +75,8 @@
 
               # Rust
               rustToolchain
+              cargo-deny
+              cargo-update
               mold
 
               # CUDA
@@ -93,12 +94,13 @@
 
               # CUDA
               CUDA_PATH = "${pkgs.cudatoolkit}";
-              LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib:${pkgs.ncurses5}/lib";
+              LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib:${pkgs.ncurses5}/lib:${pkgs.lib.makeLibraryPath packages}";
               EXTRA_CCFLAGS = "-I/usr/include";
             };
 
             shellHook = ''
               export PATH="$PWD/${env.CARGO_HOME}/bin:/run/opengl-driver/bin:$PATH"
+              unset all_proxy https_proxy http_proxy
             '';
           };
       }
