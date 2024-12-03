@@ -24,17 +24,10 @@
 - 并行计算
   - OpenMP多线程
   - MPI分布式计算
+  - 改进随机数生成器
   - CUDA GPU加速
   - 混合并行(MPI+OpenMP)
   - 向量化指令(SSE/AVX)
-
-- 系统
-  - 改进随机数生成器
-  - 内存访问模式优化
-  - NUMA感知的数据分布
-  - 缓存友好的数据结构设计
-  - 减少线程同步开销
-  - 动态负载均衡策略
 
 ### 数学优化
 
@@ -104,8 +97,10 @@ just update
 
 ## 参考
 
+- [Rust编码规范](https://rust-coding-guidelines.github.io/rust-coding-guidelines-zh/)
 - [OpenMP 简易教程](https://lemon-412.github.io/imgs/20200516OpenMP_simple_Program.pdf)
 - [OpenMP并行编程](http://scc.ustc.edu.cn/_upload/article/files/f6/ed/85b3c0514658a6b88cc470263787/W020121113517997951933.pdf)
 - [高性能计算之并行编程技术-MPI 并行程序设计](http://www.whigg.cas.cn/resource/superComputer/201010/P020101023579409136210.pdf)
 - [MPI并行编程入门](https://scc.ustc.edu.cn/_upload/article/files/e0/98/a9f0c4964abdb3281233d7943f9e/W020121113517561886972.pdf)
 - [NUMA架构的CPU-你真的用好了么？](http://cenalulu.github.io/linux/numa/)
+- [如何在生产环境排查 Rust 内存占用过高问题s](https://rustmagazine.github.io/rust_magazine_2021/chapter_5/rust-memory-troubleshootting.html)
