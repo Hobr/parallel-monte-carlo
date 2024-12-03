@@ -2,7 +2,7 @@
   description = "Rust Shell";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
@@ -79,7 +79,6 @@
               mold
 
               # CUDA
-              linuxPackages.nvidia_x11_beta
               cudatoolkit
               cudaPackages.cudnn
               cudaPackages.nccl
@@ -89,19 +88,17 @@
             env = {
               # Rust
               CARGO_HOME = builtins.toString ".cargo";
-              RUSTUP_HOME = builtins.toString ".rustup";
               RUST_SRC_PATH = "${pkgs.rustToolchain}/lib/rustlib/src/rust/library";
               RUSTFLAGS = "-C link-arg=-fuse-ld=mold";
 
               # CUDA
               CUDA_PATH = "${pkgs.cudatoolkit}";
-              LD_LIBRARY_PATH = "${pkgs.linuxPackages.nvidia_x11_beta}/lib:${pkgs.ncurses5}/lib";
-              EXTRA_LDFLAGS = "-L/lib -L${pkgs.linuxPackages.nvidia_x11_beta}/lib";
+              LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib:${pkgs.ncurses5}/lib";
               EXTRA_CCFLAGS = "-I/usr/include";
             };
 
             shellHook = ''
-              export PATH="$PWD/${env.CARGO_HOME}/bin:$PATH"
+              export PATH="$PWD/${env.CARGO_HOME}/bin:/run/opengl-driver/bin:$PATH"
             '';
           };
       }
