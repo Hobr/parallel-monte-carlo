@@ -1,32 +1,30 @@
-cpp:
-  g++ -fopenmp -mavx -O3 cpp/main.cpp -o cpp_res
+run: run-c run-rust
 
-rust:
-  cd rust && cargo run
-  cd ../
+run-rust:
+  cargo run
 
-bend-c:
-  bend run-c bend/main.bend
+run-c:
+  build/cpp_dist
 
-bend-rust:
-  bend run-rs bend/main.bend
+build: build-c build-rust
 
-bend-cuda:
-  bend run-cu bend/main.bend
+build-rust:
+  cargo build
+
+build-c:
+  g++ -fopenmp -mavx -O3 algorithm-c/main.cpp -o build/cpp_dist
 
 fmt:
-  cd rust && cargo check
-  cd ../
+  cargo check
   pre-commit run --all-files
 
-install-dev:
+install:
   pre-commit install
-  cargo install cargo-deny typos-cli
-  cd rust && cargo deny fetch
-  cd ../
+  cargo deny fetch
+  cargo install hvm bend-lang
 
 update:
   nix flake update
   pre-commit autoupdate
-  cd rust && cargo upgrade
-  cd ../
+  cargo upgrade
+  cargo update

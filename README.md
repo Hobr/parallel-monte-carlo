@@ -1,61 +1,111 @@
 # 基于蒙特卡洛法算圆的面积 并行计算
 
-南京理工大学2024年秋季学期并行计算导论课程大作业, 提供C++(NCCL)/Rust/Bend三种解决方案
+南京理工大学2024年秋季学期并行计算导论课程大作业, 提供多种工程/数学解决方案
 
 ## 方法
 
-### 算法
+### 语言方案
 
-> 注重减少方差, 提升精度
+- CPP
+  - C++20
+  - OpenMP
+  - MPI
+  - SSE/AVX
 
-- 原始
-  - 分析误差随点数增长的收敛速度, 形成对照
-  - 测试极端情况, 如非常低的采样点数和非常高的采样点数
+- Rust
+  - Rayon
 
-- 自适应采样
-- 低差异序列
-- 重要性采样
-- 极坐标变换
-- 分层采样
-- 准随机序列
-- 蒙特卡洛树搜索
+- Bend
+  - Rust
+  - CUDA
 
-### 工程
+### 工程优化
 
-> 注重运行效率和吞吐量
+- 并行计算
+  - OpenMP多线程
+  - MPI分布式计算
+  - CUDA GPU加速
+  - 混合并行(MPI+OpenMP)
+  - 向量化指令(SSE/AVX)
 
-- 原始
-- 随机数生成器
-- SIMD
-- 并行
-- CUDA
-- 多机
+- 系统
+  - 改进随机数生成器
+  - 内存访问模式优化
+  - NUMA感知的数据分布
+  - 缓存友好的数据结构设计
+  - 减少线程同步开销
+  - 动态负载均衡策略
+
+### 数学优化
+
+- 采样策略
+  - 纯随机采样(标准蒙特卡洛)
+  - 分层采样
+  - 拟蒙特卡洛序列(Sobol/Halton序列)
+  - 重要性采样
+  - 自适应采样
+  - 蒙特卡洛树搜索
+
+- 误差控制
+  - 方差缩减技术
+  - 置信区间估计
+  - 收敛性分析
+  - 不同精度要求下的采样数优化
+
+### 对照组合
+
+- 基准组
+  - 单线程 + 纯随机采样
+  - OpenMP + 纯随机采样
+  - CUDA + 纯随机采样
+
+- 算法优化组
+  - OpenMP + 分层采样
+  - OpenMP + 拟蒙特卡洛序列
+  - OpenMP + 重要性采样
+
+- 工程优化组
+  - MPI + 纯随机采样
+  - 向量化 + 纯随机采样
+  - 混合并行 + 纯随机采样
+
+- 完全优化组
+  - 混合并行 + 拟蒙特卡洛序列 + 缓存优化
+  - CUDA + 重要性采样 + 共享内存优化
+
+### 指标
+
+- 计算时间(加速比)
+- 计算精度
+- 收敛速度
+- 资源利用率
+- 扩展性(不同核心数/节点数下的性能)
 
 ## 使用
+
+### 第一步 拉取
 
 ```bash
 git clone https://github.com/Hobr/parallel-monte-carlo
 cd parallel-monte-carlo
 
+# 其他系统请自行参考`flake.nix`文件安装必要的依赖
 echo "use flake" > .envrc
 direnv allow
 
-cargo install just
-
-# C++
-just cpp
-
-# Rust
-just rust
-
-# Bend
-cargo install hvm bend-lang
-just bend-c
-just bend-rs
-just bend-cuda
+just build
+just run
 
 # 开发
-just install-dev
+just install
 just fmt
 just update
 ```
+
+## 参考
+
+- [OpenMP 简易教程](https://lemon-412.github.io/imgs/20200516OpenMP_simple_Program.pdf)
+- [OpenMP并行编程](http://scc.ustc.edu.cn/_upload/article/files/f6/ed/85b3c0514658a6b88cc470263787/W020121113517997951933.pdf)
+- [高性能计算之并行编程技术-MPI 并行程序设计](http://www.whigg.cas.cn/resource/superComputer/201010/P020101023579409136210.pdf)
+- [MPI并行编程入门](https://scc.ustc.edu.cn/_upload/article/files/e0/98/a9f0c4964abdb3281233d7943f9e/W020121113517561886972.pdf)
+- [NUMA架构的CPU-你真的用好了么？](http://cenalulu.github.io/linux/numa/)
