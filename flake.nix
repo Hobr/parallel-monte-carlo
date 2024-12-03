@@ -72,6 +72,7 @@
               gdb
               llvmPackages.openmp
               mpi
+              cmake
 
               # Rust
               rustToolchain

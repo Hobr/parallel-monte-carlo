@@ -1,7 +1,8 @@
 [workspace]
 members = [
     "algorithm",
-    "frontend",
+    "worker",
+    "master",
 ]
 resolver = "2"
 
