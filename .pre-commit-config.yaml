@@ -7,6 +7,8 @@ repos:
       - id: check-case-conflict
       - id: check-merge-conflict
       - id: check-docstring-first
+      - id: check-added-large-files
+      - id: check-toml
       - id: check-yaml
       - id: check-added-large-files
       - id: debug-statements
@@ -15,10 +17,12 @@ repos:
       - id: mixed-line-ending
       - id: trailing-whitespace
 
-  - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.0.0
+  - repo: https://github.com/pre-commit/mirrors-clang-format
+    rev: v19.1.4
     hooks:
-      - id: commitizen
+      - id: clang-format
+        args:
+        - --style=Mozilla
 
   - repo: local
     hooks:
