@@ -3,14 +3,17 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-      - id: check-byte-order-marker
+      - id: check-builtin-literals
       - id: check-case-conflict
       - id: check-merge-conflict
+      - id: check-docstring-first
       - id: check-yaml
+      - id: check-added-large-files
+      - id: debug-statements
       - id: end-of-file-fixer
+      - id: fix-byte-order-marker
       - id: mixed-line-ending
+      - id: trailing-whitespace
 
   - repo: https://github.com/commitizen-tools/commitizen
     rev: v4.0.0
@@ -22,7 +25,7 @@ repos:
       - id: cargo-fmt
         name: cargo fmt
         description: Format files with rustfmt.
-        entry: bash -c 'cd rust && cargo fmt -- --check'
+        entry: bash -c 'cargo fmt -- --check'
         language: rust
         files: \.rs$
         args: []
@@ -30,23 +33,15 @@ repos:
       - id: cargo-deny
         name: cargo deny check
         description: Check cargo dependencies
-        entry: bash -c 'cd rust && cargo deny check -d'
+        entry: bash -c 'cargo deny check -d'
         language: rust
         files: \.rs$
         args: []
 
-      - id: typos
-        name: typos
-        description: check typo
-        entry: bash -c 'cd rust && typos'
-        language: rust
-        files: \.*$
-        pass_filenames: false
-
       - id: cargo-check
         name: cargo check
         description: Check the package for errors.
-        entry: bash -c 'cd rust && cargo check --all'
+        entry: bash -c 'cargo check --all'
         language: rust
         files: \.rs$
         pass_filenames: false
@@ -54,7 +49,7 @@ repos:
       - id: cargo-clippy
         name: cargo clippy
         description: Lint rust sources
-        entry: bash -c 'cd rust && cargo clippy --all-targets --all-features --tests --benches -- -D warnings'
+        entry: bash -c 'cargo clippy --all-targets --all-features --tests --benches -- -D warnings'
         language: rust
         files: \.rs$
         pass_filenames: false
