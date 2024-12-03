@@ -26,5 +26,4 @@ install:
 update:
   nix flake update
   pre-commit autoupdate
-  cargo upgrade
   cargo update
