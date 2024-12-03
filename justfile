@@ -1,22 +1,18 @@
 cpp:
-  cd cpp && clang++ -std=c++17 -Wall -Wextra -Wpedantic -Werror -o main main.cpp
-  cd ../
+  g++ -fopenmp -mavx -O3 cpp/main.cpp -o cpp_res
 
 rust:
   cd rust && cargo run
   cd ../
 
 bend-c:
-  cd bend && bend run-c main.bend
-  cd ../
+  bend run-c bend/main.bend
 
 bend-rust:
-  cd bend && bend run-rs main.bend
-  cd ../
+  bend run-rs bend/main.bend
 
 bend-cuda:
-  cd bend && bend run-cu main.bend
-  cd ../
+  bend run-cu bend/main.bend
 
 fmt:
   cd rust && cargo check

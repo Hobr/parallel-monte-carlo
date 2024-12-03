@@ -322,3 +322,4 @@ result-*
 .direnv
 dist/*
 *.hvm
+*_res
