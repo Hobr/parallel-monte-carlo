@@ -22,7 +22,7 @@ repos:
     hooks:
       - id: clang-format
         args:
-        - --style=Mozilla
+        - --style=GNU
 
   - repo: local
     hooks:
