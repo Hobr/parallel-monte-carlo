@@ -9,4 +9,3 @@ license.workspace = true
 repository.workspace = true
 
 [dependencies]
-quiche = "0.22.0"
