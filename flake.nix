@@ -82,6 +82,7 @@
               linuxPackages.nvidia_x11_beta
               cudatoolkit
               cudaPackages.cudnn
+              cudaPackages.nccl
               cudaPackages.cuda_cudart
             ];
 
