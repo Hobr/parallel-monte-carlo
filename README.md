@@ -104,3 +104,4 @@ just update
 - [MPI并行编程入门](https://scc.ustc.edu.cn/_upload/article/files/e0/98/a9f0c4964abdb3281233d7943f9e/W020121113517561886972.pdf)
 - [NUMA架构的CPU-你真的用好了么？](http://cenalulu.github.io/linux/numa/)
 - [如何在生产环境排查 Rust 内存占用过高问题s](https://rustmagazine.github.io/rust_magazine_2021/chapter_5/rust-memory-troubleshootting.html)
+- [浅谈Actor模型](http://chuquan.me/2023/01/15/actor/)
