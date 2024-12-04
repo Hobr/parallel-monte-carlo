@@ -101,7 +101,6 @@
 
             shellHook = ''
               export PATH="$PWD/${env.CARGO_HOME}/bin:/run/opengl-driver/bin:$PATH"
-              unset all_proxy https_proxy http_proxy
             '';
           };
       }
