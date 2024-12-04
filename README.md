@@ -77,8 +77,6 @@
 
 ## 使用
 
-### 第一步 拉取
-
 ```bash
 git clone https://github.com/Hobr/parallel-monte-carlo
 cd parallel-monte-carlo
