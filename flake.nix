@@ -37,6 +37,10 @@
               pre-commit
               cookiecutter
 
+              # Fortran
+
+              # Julia
+
               # CUDA
               cudatoolkit
               cudaPackages.cudnn
