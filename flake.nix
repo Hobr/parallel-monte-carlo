@@ -46,7 +46,6 @@
               # CUDA
               cudatoolkit
               cudaPackages.nccl
-              cudaPackages.cudnn
               cudaPackages.cuda_cudart
             ];
 
