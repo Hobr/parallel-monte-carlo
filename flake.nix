@@ -35,24 +35,29 @@
 
               # 工具
               pre-commit
-              cookiecutter
 
               # Fortran
+              gfortran
+              fprettify
 
               # Julia
+              julia
 
               # CUDA
               cudatoolkit
-              cudaPackages.cudnn
               cudaPackages.nccl
+              cudaPackages.cudnn
               cudaPackages.cuda_cudart
             ];
 
             env = {
               # CUDA
               CUDA_PATH = "${pkgs.cudatoolkit}";
-              LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib:${pkgs.ncurses5}/lib:${pkgs.lib.makeLibraryPath packages}";
+              LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib:${pkgs.ncurses5}/lib";
               EXTRA_CCFLAGS = "-I/usr/include";
+
+              # Julia
+              JULIA_PKG_SERVER = "https://mirrors.ustc.edu.cn/julia";
             };
 
             shellHook = ''
