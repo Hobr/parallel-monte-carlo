@@ -43,6 +43,9 @@
               # Julia
               julia
 
+              # 库
+              mkl
+
               # CUDA
               cudatoolkit
               cudaPackages.nccl
