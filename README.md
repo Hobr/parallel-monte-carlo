@@ -83,7 +83,6 @@
 git clone https://github.com/Hobr/parallel-monte-carlo
 cd parallel-monte-carlo
 
-# 其他系统请自行参考`flake.nix`文件安装必要的依赖
 echo "use flake" > .envrc
 direnv allow
 ```
