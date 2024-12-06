@@ -35,6 +35,7 @@
 
               # 工具
               pre-commit
+              just
 
               # Fortran
               gfortran
@@ -43,12 +44,17 @@
               # Julia
               julia
 
+              # Rust
+              rustc
+              cargo
+
               # 库
               mkl
 
               # CUDA
               cudatoolkit
               cudaPackages.nccl
+              cudaPackages.cuda_nvcc
               cudaPackages.cuda_cudart
             ];
 
@@ -60,10 +66,13 @@
 
               # Julia
               JULIA_PKG_SERVER = "https://mirrors.ustc.edu.cn/julia";
+
+              # Rust
+              CARGO_HOME = builtins.toString ".cargo";
             };
 
             shellHook = ''
-              export PATH="/run/opengl-driver/bin:$PATH"
+              export PATH="$PWD/${env.CARGO_HOME}/bin:/run/opengl-driver/bin:$PATH"
             '';
           };
       }
