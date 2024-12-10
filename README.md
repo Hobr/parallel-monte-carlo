@@ -85,9 +85,7 @@ cd parallel-monte-carlo
 echo "use flake" > .envrc
 direnv allow
 
-julia
-]add LoopVectorization VSL CUDA Distributed Plots BenchmarkTools TimerOutputs JuliaFormatter
-]up
-include("main.jl")
-exit()
+julia -e 'using Pkg; Pkg.add(["Distributions", "DistributedArrays", "RandomNumbers", "MKL", "LoopVectorization", "VSL", "CUDA", "Distributed", "Plots", "BenchmarkTools", "TimerOutputs", "JuliaFormatter"])'
+julia -e 'using JuliaFormatter; format_file("julia/main.jl")'
+julia -e 'include("julia/main.jl")'
 ```

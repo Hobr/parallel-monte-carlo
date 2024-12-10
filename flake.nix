@@ -42,7 +42,7 @@
               fprettify
 
               # Julia
-              julia
+              julia-bin
 
               # Rust
               rustc
