@@ -40,6 +40,8 @@
               # C++
               gcc
               gdb
+              vcpkg
+              vcpkg-tool
 
               # Julia
               julia-lts
