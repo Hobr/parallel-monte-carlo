@@ -1,17 +1,18 @@
 install:
     cargo install hvm bend-lang
     julia -e 'using Pkg; Pkg.add(["Distributions", "DistributedArrays", "RandomNumbers", "MKL", "LoopVectorization", "VSL", "CUDA", "Distributed", "Plots", "BenchmarkTools", "TimerOutputs"])'
+    docker pull intel/cpp-essentials:latest
 
-fortran-gcc:
+cpp-gcc:
     gfortran -o fortran/gcc fortranc/gcc.f90
 
-fortran-intel:
+cpp-intel:
     ifort -o fortran/intel fortran/intel.f90
 
-fortran-nvidia:
-    nvfortran -o fortran/nvidia fortran/nvidia.f90
+cpp: cpp-gcc cpp-intel
 
-fortran: fortran-gcc fortran-intel fortran-nvidia
+julia:
+    julia julia/main.jl
 
 bend-c:
     bend run-c bend/main.bend
@@ -23,9 +24,6 @@ bend-gpu:
     bend run-cu bend/main.bend
 
 bend: bend-c bend-rust bend-gpu
-
-julia:
-    julia julia/main.jl
 
 fmt:
     pre-commit run --all-files

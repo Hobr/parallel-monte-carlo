@@ -37,9 +37,9 @@
               pre-commit
               just
 
-              # Fortran
-              gfortran
-              fprettify
+              # C++
+              gcc
+              gdb
 
               # Julia
               julia-lts

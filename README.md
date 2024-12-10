@@ -5,18 +5,12 @@
 ## 方法
 
 - 语言
-  - Fortran
-    - 编译器
-      - GNU Fortran
-      - Intel Fortran
-      - NVCC
-    - 并行/分布式库
-      - OpenMP
-      - MPI
-      - Coarray
-    - GPU
-      - CUDA
-      - OpenACC
+  - C++
+    - GCC
+    - ICX
+    - OpenMP
+    - MPI
+    - CUDA
 
   - Julia
     - Threads
