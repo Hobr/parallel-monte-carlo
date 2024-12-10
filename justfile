@@ -29,3 +29,9 @@ julia:
 
 fmt:
     pre-commit run --all-files
+
+update:
+    cargo install hvm bend-lang
+    julia -e 'using Pkg; Pkg.update()'
+    pre-commit autoupdate
+    nix flake update
