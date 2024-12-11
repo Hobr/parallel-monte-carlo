@@ -17,7 +17,7 @@ class Basic
     };
 
     Basic(const Params &params);
-    void run();
+    virtual void run();
     const util::Statistics &get_results() const;
 
   private:
