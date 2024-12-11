@@ -4,7 +4,7 @@ INCLUDE := "-Iinclude cpp/src/*.cpp cpp/main.cpp"
 install:
     cargo install hvm bend-lang
     julia -e 'using Pkg; Pkg.add(["Distributions", "DistributedArrays", "RandomNumbers", "Statistics", "MKL", "LoopVectorization", "VSL", "CUDA", "Distributed", "Plots", "BenchmarkTools", "TimerOutputs", "JuliaFormatter"])'
-    docker pull intel/cpp-essentials:latest
+    sudo docker pull intel/cpp-essentials:latest
 
 cpp-gcc:
     g++ {{CFLAGS}} {{INCLUDE}} -march=native -o dist/gcc
@@ -15,7 +15,11 @@ cpp-intel:
     sudo docker run -it --rm -v $(pwd):/workspace intel/cpp-essentials bash -c "cd /workspace && icpx {{INCLUDE}} -qopt-report=max -qopt-report-phase=vec -o dist/intel"
     ./dist/intel
 
-cpp: cpp-gcc cpp-intel
+cpp-cuda:
+    nvcc {{CFLAGS}} {{INCLUDE}} cpp/main.cpp -o dist/cuda
+    ./dist/cuda
+
+cpp: cpp-gcc cpp-intel cpp-cuda
 
 julia:
     julia julia/main.jl
