@@ -2,7 +2,7 @@
   description = "Rust Shell";
 
   inputs = {
-    nixpkgs.url = "nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -39,12 +39,11 @@
 
               # C++
               gcc
-              gdb
               vcpkg
               vcpkg-tool
 
               # Julia
-              julia
+              julia-bin
 
               # Rust
               rustc
