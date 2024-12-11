@@ -37,10 +37,9 @@
               pre-commit
               just
 
-              # C++
-              gcc
-              vcpkg
-              vcpkg-tool
+              # Fortran
+              gfortran
+              openblas
 
               # Julia
               julia-bin
