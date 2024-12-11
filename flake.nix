@@ -74,6 +74,7 @@
 
             shellHook = ''
               export PATH="$PWD/${env.CARGO_HOME}/bin:/run/opengl-driver/bin:$PATH"
+              export OMP_NUM_THREADS=8
             '';
           };
       }

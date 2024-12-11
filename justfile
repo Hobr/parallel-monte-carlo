@@ -4,10 +4,13 @@ install:
     docker pull intel/cpp-essentials:latest
 
 cpp-gcc:
-    gfortran -o fortran/gcc fortranc/gcc.f90
+    g++ -std=c++17 -o dist/gcc cpp/main.cpp
+    ./dist/gcc
 
 cpp-intel:
-    ifort -o fortran/intel fortran/intel.f90
+    sudo docker run -it --rm -v $(pwd):/workspace intel/cpp-essentials bash -c "cd /workspace && icpx -o dist/intel cpp/main.cpp -O3 -march=native -qopt-zmm-usage=high -qopt-streaming-stores=always -ffast-math -ipo -static -qopenmp -march=native -mtune=native -fvectorize -falign-functions=32 -qmkl"
+    sudo docker run -it --rm -v $(pwd):/workspace intel/cpp-essentials bash -c "cd /workspace && icpx -o dist/intel cpp/main.cpp -qopt-report=max -qopt-report-phase=vec"
+    ./dist/intel
 
 cpp: cpp-gcc cpp-intel
 

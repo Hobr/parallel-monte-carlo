@@ -121,3 +121,5 @@ Cargo.lock
 # End of https://www.toptal.com/developers/gitignore/api/rust,julia,linux,direnv,dotenv,fortran,visualstudiocode
 
 .cargo
+!dist/.gitkeep
+dist/*
