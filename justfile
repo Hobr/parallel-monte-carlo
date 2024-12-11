@@ -3,12 +3,15 @@ install:
     julia -e 'using Pkg; Pkg.add(["Distributions", "DistributedArrays", "RandomNumbers", "Statistics", "MKL", "LoopVectorization", "VSL", "CUDA", "Distributed", "Plots", "BenchmarkTools", "TimerOutputs", "JuliaFormatter"])'
     sudo docker pull intel/fortran-essentials:latest
 
+fpm:
+    cd fortran && fortran-fpm run -- demo substitute fpm.toml
+
 gfortran:
-    gfortran -O3 -march=native -fopenmp -o dist/gcc fortran/main.f90
+    gfortran -O3 -march=native -fopenmp -o fortran/build/gcc fortran/src/fortran.f90
     ./dist/gcc
 
 ifx:
-    sudo docker run -it --rm -v $(pwd):/workspace intel/fortran-essentials bash -c "cd /workspace && ifx -O3 -march=native -qopenmp -o dist/intel fortran/main.f90 && ./dist/intel"
+    sudo docker run -it --rm -v $(pwd):/workspace intel/fortran-essentials bash -c "cd /workspace && ifx -O3 -march=native -qopenmp -o fortran/build/intel fortran/src/fortran.f90 && fortran/build/intel"
 
 fortran: gfortran ifx
 

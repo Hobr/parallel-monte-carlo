@@ -4,14 +4,20 @@ license = "license"
 author = "Hobr"
 maintainer = "mail@hobr.site"
 copyright = "Copyright 2024, Hobr"
+
 [build]
 auto-executables = true
 auto-tests = true
 auto-examples = true
 module-naming = false
+
 [install]
 library = false
+
 [fortran]
 implicit-typing = false
 implicit-external = false
 source-form = "free"
+
+[dependencies]
+stdlib = "*"
