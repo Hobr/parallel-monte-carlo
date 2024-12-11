@@ -40,6 +40,7 @@
               # Fortran
               gfortran
               openblas
+              fortran-fpm
               fortls
 
               # Julia
