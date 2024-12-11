@@ -7,15 +7,15 @@ install:
     sudo docker pull intel/cpp-essentials:latest
 
 cpp-gcc:
-    g++ {{CFLAGS}} {{INCLUDE}} -march=native -o dist/gcc
+    g++ {{CFLAGS}} {{INCLUDE}} -march=native -fopenmp -o dist/gcc
     ./dist/gcc
 
 cpp-intel:
-    sudo docker run -it --rm -v $(pwd):/workspace intel/cpp-essentials bash -c "cd /workspace && icpx {{CFLAGS}} {{INCLUDE}} -qopt-report=max -qopt-report-phase=vec -qopt-zmm-usage=high -qopt-streaming-stores=always -ffast-math -ipo -static -qopenmp -mtune=native -fvectorize -falign-functions=32 -qmkl -march=native -o dist/intel"
+    sudo docker run -it --rm -v $(pwd):/workspace intel/cpp-essentials bash -c "cd /workspace && icpx {{CFLAGS}} {{INCLUDE}} -qopt-report=max -qopt-report-phase=vec -qopt-zmm-usage=high -qopt-streaming-stores=always -ffast-math -ipo -static -mtune=native -fvectorize -falign-functions=32 -qmkl -march=native -qopenmp -o dist/intel"
     ./dist/intel
 
 cpp-cuda:
-    nvcc {{CFLAGS}} {{INCLUDE}} cpp/main.cpp -o dist/cuda
+    nvcc {{CFLAGS}} {{INCLUDE}} -Xcompiler "-march=native -fopenmp" -o dist/cuda
     ./dist/cuda
 
 cpp: cpp-gcc cpp-intel cpp-cuda
