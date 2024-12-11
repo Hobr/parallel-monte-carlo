@@ -21,3 +21,4 @@ source-form = "free"
 
 [dependencies]
 stdlib = "*"
+openmp = "*"

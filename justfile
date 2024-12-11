@@ -4,14 +4,14 @@ install:
     sudo docker pull intel/fortran-essentials:latest
 
 fpm:
-    cd fortran && fortran-fpm run -- demo substitute fpm.toml
+    cd fortran && fortran-fpm run
 
 gfortran:
-    gfortran -O3 -march=native -fopenmp -o fortran/build/gcc fortran/src/fortran.f90
-    ./dist/gcc
+    gfortran -O3 -march=native -fopenmp -o fortran/build/gcc fortran/app/main.f90
+    ./fortran/build/gcc
 
 ifx:
-    sudo docker run -it --rm -v $(pwd):/workspace intel/fortran-essentials bash -c "cd /workspace && ifx -O3 -march=native -qopenmp -o fortran/build/intel fortran/src/fortran.f90 && fortran/build/intel"
+    sudo docker run -it --rm -v $(pwd):/workspace intel/fortran-essentials bash -c "cd /workspace && ifx -O3 -march=native -qopenmp -o fortran/build/intel fortran/app/main.f90 && fortran/build/intel"
 
 fortran: gfortran ifx
 
