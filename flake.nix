@@ -50,6 +50,7 @@
               cargo
 
               # 库
+              mpi
               mkl
 
               # CUDA

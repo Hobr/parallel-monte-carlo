@@ -1,42 +1,27 @@
 #pragma once
+#include "../../util/random.hpp"
 #include "../../util/statistics.hpp"
 #include "../../util/timer.hpp"
-#include <random>
 
-namespace monte::basic
+namespace monte
 {
-
-struct Result
-{
-    double result;
-    double variance;
-    double wall_time;
-    double cpu_time;
-};
-
-class MonteCarloBasic
+class Basic
 {
   public:
-    virtual ~MonteCarloBasic() = default;
-    virtual Result compute(size_t samples, double radius, std::mt19937 &random_engine) = 0;
-};
+    struct Params
+    {
+        size_t samples;
+        double radius;
+        bool simd;
+        bool vectorized;
+    };
 
-class GeneralMonteCarlo : public MonteCarloBasic
-{
-  public:
-    Result compute(size_t samples, double radius, std::mt19937 &random_engine) override;
-};
+    Basic(const Params &params);
+    void run();
+    const util::Statistics &get_results() const;
 
-class BatchMonteCarlo : public MonteCarloBasic
-{
-  public:
-    Result compute(size_t samples, double radius, std::mt19937 &random_engine) override;
+  private:
+    Params params_;
+    util::Statistics stats_;
 };
-
-class SymmetryMonteCarlo : public MonteCarloBasic
-{
-  public:
-    Result compute(size_t samples, double radius, std::mt19937 &random_engine) override;
-};
-
-} // namespace monte::basic
+} // namespace monte

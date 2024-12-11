@@ -1,11 +1,28 @@
 #pragma once
-#include <cstddef>
+#include <vector>
+
 namespace util
 {
-
-inline double calculate_variance(double value, double mean, size_t count)
+struct Result
 {
-    return (value - mean) * (value - mean) / count;
-}
+    double value;
+    double accuracy;
+    double wall_time;
+    double cpu_time;
+    double variance;
+    double convergence;
+    double confidence;
+    double utilization;
+    double amdahl;
+};
 
+class Statistics
+{
+  public:
+    void add_result(const Result &result);
+    const std::vector<Result> &get_results() const;
+
+  private:
+    std::vector<Result> results_;
+};
 } // namespace util
