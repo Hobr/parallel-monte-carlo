@@ -53,9 +53,8 @@
   - 半径
   - 样本量
   - 结果精度(与真实值的差距)
-  - 执行时间
-    - Wall Time
-    - CPU Time
+  - Wall Time
+  - CPU Time
   - 方差
   - 收敛性
   - 误差置信区间
