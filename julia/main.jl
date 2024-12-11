@@ -1,60 +1,39 @@
-using CUDA
-using CUDA: i32
+using Random
+using Statistics
+using BenchmarkTools
 
-using Test
+struct MonteCarloPI
+    radius::Float64
+    rng::MersenneTwister
 
-"Dummy kernel doing 100 FMAs."
-function kernel_100fma(a, b, c, out)
-    i = (blockIdx().x - 1i32) * blockDim().x + threadIdx().x
-    @inbounds if i <= length(out)
-        a_val = a[i]
-        b_val = b[i]
-        c_val = c[i]
-
-        for j = 1:33
-            a_val = CUDA.fma(a_val, b_val, c_val)
-            b_val = CUDA.fma(a_val, b_val, c_val)
-            c_val = CUDA.fma(a_val, b_val, c_val)
-        end
-
-        out[i] = CUDA.fma(a_val, b_val, c_val)
-    end
-
-    return
+    MonteCarloPI(r = 1.0) = new(r, MersenneTwister(time_ns()))
 end
 
-function peakflops(n::Integer = 5000, dev::CuDevice = CuDevice(0))
-    device!(dev) do
-        dims = (n, n)
-        a = round.(rand(Float32, dims) * 100)
-        b = round.(rand(Float32, dims) * 100)
-        c = round.(rand(Float32, dims) * 100)
-        out = similar(a)
+function calculate(mc::MonteCarloPI, n::Int)
+    inside = 0
 
-        d_a = CuArray(a)
-        d_b = CuArray(b)
-        d_c = CuArray(c)
-        d_out = CuArray(out)
-
-        len = prod(dims)
-
-        kernel = @cuda launch = false kernel_100fma(d_a, d_b, d_c, d_out)
-        config = launch_configuration(kernel.fun)
-        threads = min(len, config.threads)
-        blocks = cld(len, threads)
-
-        # warm-up
-        kernel(d_a, d_b, d_c, d_out)
-        synchronize()
-
-        secs = CUDA.@elapsed begin
-            kernel(d_a, d_b, d_c, d_out; threads, blocks)
+    for i = 1:n
+        x = rand(mc.rng) * 2mc.radius - mc.radius
+        y = rand(mc.rng) * 2mc.radius - mc.radius
+        if x^2 + y^2 <= mc.radius^2
+            inside += 1
         end
-        flopcount = 200 * len
-        flops = flopcount / secs
-
-        return flops
     end
+
+    return 4.0 * inside / n
 end
 
-println(peakflops())
+function get_error(calculated_pi::Float64)
+    return abs(π - calculated_pi)
+end
+
+# Run the simulation
+mc = MonteCarloPI(1.0)
+n_points = 1_000_000
+
+# Benchmark and run
+result = @btime calculate($mc, $n_points)
+
+println("Estimated π: ", result)
+println("Actual π: ", π)
+println("Error: ", get_error(result))
