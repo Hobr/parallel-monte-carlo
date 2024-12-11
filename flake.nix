@@ -51,7 +51,7 @@
               cargo
 
               # 库
-              mpi
+              mpich
               mkl
 
               # Typst
