@@ -21,7 +21,7 @@ bend-c:
     bend run-c bend/main.bend
 
 bend-rust:
-    bend run-rust bend/main.bend
+    bend run-rs bend/main.bend
 
 bend-gpu:
     bend run-cu bend/main.bend

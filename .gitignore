@@ -123,3 +123,4 @@ Cargo.lock
 .cargo
 !dist/.gitkeep
 dist/*
+*.hvm
