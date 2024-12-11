@@ -44,7 +44,7 @@
               vcpkg-tool
 
               # Julia
-              julia-lts
+              julia
 
               # Rust
               rustc
