@@ -11,8 +11,7 @@ cpp-gcc:
     ./dist/gcc
 
 cpp-intel:
-    sudo docker run -it --rm -v $(pwd):/workspace intel/cpp-essentials bash -c "cd /workspace && icpx  {{CFLAGS}} {{INCLUDE}} -qopt-zmm-usage=high -qopt-streaming-stores=always -ffast-math -ipo -static -qopenmp -mtune=native -fvectorize -falign-functions=32 -qmkl -march=native -o dist/intel"
-    sudo docker run -it --rm -v $(pwd):/workspace intel/cpp-essentials bash -c "cd /workspace && icpx {{INCLUDE}} -qopt-report=max -qopt-report-phase=vec -o dist/intel"
+    sudo docker run -it --rm -v $(pwd):/workspace intel/cpp-essentials bash -c "cd /workspace && icpx {{CFLAGS}} {{INCLUDE}} -qopt-report=max -qopt-report-phase=vec -qopt-zmm-usage=high -qopt-streaming-stores=always -ffast-math -ipo -static -qopenmp -mtune=native -fvectorize -falign-functions=32 -qmkl -march=native -o dist/intel"
     ./dist/intel
 
 cpp-cuda:
@@ -34,6 +33,8 @@ bend-gpu:
     bend run-cu bend/main.bend
 
 bend: bend-c bend-rust bend-gpu
+
+build: cpp julia bend
 
 fmt:
     pre-commit run --all-files
