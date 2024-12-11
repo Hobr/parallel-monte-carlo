@@ -53,6 +53,11 @@
               mpi
               mkl
 
+              # Typst
+              typst
+              typstyle
+              tinymist
+
               # CUDA
               cudatoolkit
               cudaPackages.nccl
