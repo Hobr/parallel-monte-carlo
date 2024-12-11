@@ -20,7 +20,11 @@ class Statistics
 {
   public:
     void add_result(const Result &result);
-    const std::vector<Result> &get_results() const;
+
+    const std::vector<Result> &get_results() const
+    {
+        return results_;
+    }
 
   private:
     std::vector<Result> results_;

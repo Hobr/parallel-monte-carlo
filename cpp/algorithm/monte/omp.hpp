@@ -1,5 +1,6 @@
 #pragma once
 #include "basic.hpp"
+#include <omp.h>
 
 namespace monte
 {

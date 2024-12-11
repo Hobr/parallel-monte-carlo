@@ -16,11 +16,21 @@ class Basic
         bool vectorized;
     };
 
-    Basic(const Params &params);
-    virtual void run();
-    const util::Statistics &get_results() const;
+    Basic(const Params &params)
+    {
+    }
+    virtual ~Basic() = default;
 
-  private:
+    virtual void run()
+    {
+    }
+
+    const util::Statistics &get_results() const
+    {
+        return stats_;
+    }
+
+  protected:
     Params params_;
     util::Statistics stats_;
 };

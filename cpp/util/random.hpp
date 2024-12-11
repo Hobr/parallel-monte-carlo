@@ -1,5 +1,5 @@
 #pragma once
-#include <mkl_vsl.h>
+#include <mkl.h>
 #include <random>
 
 namespace util
@@ -14,6 +14,7 @@ class Random
     };
 
     Random(EngineType type, uint64_t seed);
+    ~Random();
     double next();
 
   private:
