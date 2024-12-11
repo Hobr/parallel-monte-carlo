@@ -10,14 +10,14 @@ gfortran:
     gfortran -O3 -march=native -fopenmp -fcoarray=single -o fortran/build/gcc fortran/app/main.f90
     ./fortran/build/gcc
 
-ifx:
-    sudo docker run -it --rm -v $(pwd):/workspace intel/fortran-essentials bash -c "cd /workspace && ifx -O3 -march=native -coarray -qopenmp -o fortran/build/intel fortran/app/main.f90 && fortran/build/intel"
-
 mpif:
     mpif90 -O3 -march=native -fcoarray=single -o fortran/build/mpif90 fortran/app/main.f90
     mpirun -np 8 fortran/build/mpif90
 
-fortran: fpm gfortran ifx mpif
+ifx:
+    sudo docker run -it --rm -v $(pwd):/workspace intel/fortran-essentials bash -c "cd /workspace && ifx -O3 -march=native -coarray -qopenmp -qmkl -o fortran/build/intel fortran/app/main.f90 && fortran/build/intel"
+
+fortran: fpm gfortran mpif ifx
 
 julia:
     julia julia/main.jl
