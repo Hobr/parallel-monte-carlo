@@ -28,3 +28,4 @@ repos:
     rev: v0.2.0
     hooks:
     - id: julia-format
+      files: \.jl$
