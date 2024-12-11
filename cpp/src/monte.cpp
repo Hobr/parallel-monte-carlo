@@ -4,3 +4,4 @@
     2. 批处理
     3. 对称性
 */
+#include "monte.h"

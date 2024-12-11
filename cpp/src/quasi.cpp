@@ -4,3 +4,4 @@
     2. Halton
     3. Faure
 */
+#include "quasi.h"

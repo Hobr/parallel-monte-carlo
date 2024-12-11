@@ -4,3 +4,13 @@
     2. 批处理
     3. 对称性
 */
+#ifndef MONTE_H
+#define MONTE_H
+
+class Monte
+{
+  public:
+  private:
+};
+
+#endif
