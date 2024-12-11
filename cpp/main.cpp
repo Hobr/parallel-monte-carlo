@@ -1,7 +1,8 @@
-#include "algorithm/monte/basic.hpp"
-#include "algorithm/monte/cuda.hpp"
-#include "algorithm/monte/mpi.hpp"
-#include "algorithm/monte/omp.hpp"
+#include "algorithm/adaptive.hpp"
+#include "algorithm/importance.hpp"
+#include "algorithm/monte.hpp"
+#include "algorithm/quasi.hpp"
+#include "algorithm/stratified.hpp"
 #include <iostream>
 
 int main()
