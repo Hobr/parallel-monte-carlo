@@ -5,12 +5,10 @@
 ## 方法
 
 - 语言
-  - C++
-    - GCC
-    - ICX
+  - Fortran
     - OpenMP
     - MPI
-    - CUDA
+    - Coarray
 
   - Julia
     - Threads
