@@ -1,5 +1,5 @@
 CFLAGS := "-std=c++17 -O3"
-INCLUDE := "-Icpp/include cpp/src/*.cpp cpp/main.cpp"
+INCLUDE := "cpp/main.cpp"
 
 install:
     cargo install hvm bend-lang
