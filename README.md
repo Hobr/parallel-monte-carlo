@@ -9,6 +9,7 @@
     - OpenMP
     - MPI
     - Coarray
+    - OpenCoarrays
 
   - Julia
     - Threads

@@ -40,6 +40,7 @@
               # Fortran
               gfortran
               openblas
+              fortls
 
               # Julia
               julia-bin
