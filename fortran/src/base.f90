@@ -6,7 +6,7 @@ module base
    public :: test
 
 contains
-   subroutine test
+   subroutine test()
       print *, "Test"
    end subroutine test
 

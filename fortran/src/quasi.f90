@@ -6,19 +6,19 @@ module quasi
    public :: normal, omp, mpi, coarray
 
 contains
-   subroutine normal
+   subroutine normal()
       print *, "常规实现"
    end subroutine normal
 
-   subroutine omp
+   subroutine omp()
       print *, "OpenMP实现"
    end subroutine omp
 
-   subroutine mpi
+   subroutine mpi()
       print *, "OpenMP+MPI实现"
    end subroutine mpi
 
-   subroutine coarray
+   subroutine coarray()
       print *, "Coarray实现"
    end subroutine coarray
 
