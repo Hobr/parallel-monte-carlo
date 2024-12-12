@@ -1,5 +1,5 @@
 #import "@preview/rubber-article:0.1.0": *
-
+#import "@preview/cetz:0.3.1"
 #show: article.with()
 
 #maketitle(

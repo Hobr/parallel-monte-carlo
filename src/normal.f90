@@ -1,4 +1,3 @@
-! serial_pi.f90
 program monte_carlo_pi
    use, intrinsic :: iso_fortran_env, only: dp => real64
    implicit none
