@@ -16,19 +16,7 @@
 #set heading(numbering: numbly("{1}.", default: "1.1"))
 
 #title-slide()
-
-= 小组介绍
-
-== 小组介绍
-
-#align(center,text(size: 28pt)[
-诸晓婉(922110800509) - PPT
-
-张雨馨(923104780210) - 报告
-
-拓欣(922114740127) - 代码
-])
-
+#include "work.typ"
 #include "algorithm.typ"
 #include "engine.typ"
 #include "summerize.typ"
