@@ -1,6 +1,3 @@
-M_FLAG := "-O3 -march=native -openmp -lmpi"
-I_FLAG := "-O3 -march=native -qopenmp -lmpi -qmkl"
-
 THREADS := "4"
 
 normal:
@@ -14,7 +11,7 @@ openmp-g:
 openmp-i:
     sudo docker run -it --rm -v $(pwd):/workspace intel/fortran-essentials bash -c "\
         cd /workspace && \
-        mpiifx -O3 -march=native -qopenmp -qmkl -qopenmp src/omp.f90 -o dist/omp-i && \
+        mpiifx -O3 -march=native -qopenmp -qmkl src/omp.f90 -o dist/omp-i && \
         ./dist/omp-i"
 
 hybrid-g:
@@ -24,7 +21,7 @@ hybrid-g:
 hybrid-i:
     sudo docker run -it --rm -v $(pwd):/workspace intel/fortran-essentials bash -c "\
         cd /workspace && \
-        mpiifx -O3 -march=native -qopenmp -lmpi -qmkl -qopenmp src/hybrid.f90 -o dist/hybrid-i && \
+        mpiifx -O3 -march=native -qopenmp -lmpi -qmkl src/hybrid.f90 -o dist/hybrid-i && \
         mpirun -np {{THREADS}} ./dist/hybrid-i"
 
 all: normal openmp-g openmp-i hybrid-g hybrid-i

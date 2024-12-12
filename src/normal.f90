@@ -1,4 +1,4 @@
-program monte_carlo_pi
+program normal
    use, intrinsic :: iso_fortran_env, only: dp => real64
    implicit none
 
@@ -43,7 +43,6 @@ program monte_carlo_pi
    print '(A,F15.8)', '半径: ', r
    print '(A,I10)', '样本量: ', samples
    print '(A,F15.8)', '结果精度(误差): ', dis
-   print '(A,F15.8,A)', 'Wall Time: ', (end_time - start_time)/1000.0_dp, ' seconds'
-   print '(A,F15.8,A)', 'CPU Time: ', (end_cpu - start_cpu), ' seconds'
-
-end program monte_carlo_pi
+   print '(A,F15.8,A)', 'Wall Time: ', (end_time - start_time)/1000.0_dp, '秒'
+   print '(A,F15.8,A)', 'CPU Time: ', (end_cpu - start_cpu), '秒'
+end program normal
