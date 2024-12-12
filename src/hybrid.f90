@@ -17,7 +17,7 @@ program hybrid
 
    ! 参数
    r = 1.0_dp
-   samples = 1000000
+   samples = 100000000
    local_points = samples/size
    local_inside = 0
    true_area = r*r*3.141592653589793_dp

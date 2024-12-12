@@ -1,30 +1,42 @@
-#import "@preview/rubber-article:0.1.0": *
+#import "@preview/touying:0.5.3": *
+#import "@preview/numbly:0.1.0": numbly
 #import "@preview/cetz:0.3.1": canvas, draw
 #import "@preview/cetz-plot:0.1.0": plot, chart
 #import "@preview/codly:1.1.1": *
 #import "@preview/codly-languages:0.1.1": *
-#show: article.with()
 #show: codly-init.with()
 
-#maketitle(
-  title: "基于蒙特卡洛法算圆的面积",
-  authors: (
-    "诸晓婉(922110800509)",
-    "张雨馨(923104780210)",
-    "拓欣(922114740127)",
+#import themes.stargazer: *
+
+#show: stargazer-theme.with(
+  aspect-ratio: "4-3",
+  footer: self => self.info.title,
+  config-info(
+    title: [基于蒙特卡洛法算圆的面积],
+    subtitle: [小组大作业报告],
+    author: [拓欣 诸晓婉 张雨馨],
+    date: "2024年12月12日",
   ),
-  date: "2024年12月",
 )
+
+#set heading(numbering: numbly("{1}.", default: "1.1"))
+
+#title-slide()
 
 = 介绍
 
-== 小组分工
+== 小组介绍
 
-诸晓婉 - PPT
+#align(
+  center,
+  text(size: 28pt)[
+    诸晓婉(922110800509) - PPT
 
-张雨馨 - 报告
+    张雨馨(923104780210) - 报告
 
-拓欣 - 代码
+    拓欣(922114740127) - 代码
+  ],
+)
 
 == 项目介绍
 
@@ -85,8 +97,6 @@ program normal
    print '(A,F15.8,A)', 'CPU Time: ', (end_cpu - start_cpu), '秒'
 end program normal
 ```
-
-编译指令
 
 ```bash
 gfortran -O3 -march=native src/normal.f90 -o dist/normal
@@ -202,8 +212,6 @@ program omp
    print '(A,F15.8,A)', 'CPU Time: ', (end_cpu - start_cpu), '秒'
 end program omp
 ```
-
-编译指令
 
 ```bash
 gfortran -O3 -march=native -openmp src/omp.f90 -o dist/omp-g
@@ -337,7 +345,6 @@ program hybrid
 end program hybrid
 ```
 
-编译指令
 
 ```bash
 mpif90 -O3 -fopenmp src/hybrid.f90 -o dist/hybrid-g
@@ -480,3 +487,7 @@ Rust是一门近年来非常流行的系统编程语言, 有一些高性能的�
   - Sobol序列
   - Halton序列
   - Faure序列
+
+= <touying:hidden>
+
+#align(center, text(size: 48pt, "谢谢!"))

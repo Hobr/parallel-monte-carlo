@@ -1,4 +1,4 @@
-THREADS := "4"
+THREADS := "8"
 
 normal:
     gfortran -O3 -march=native src/normal.f90 -o dist/normal
