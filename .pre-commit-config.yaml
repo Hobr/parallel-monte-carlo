@@ -5,9 +5,7 @@ repos:
     hooks:
       - id: check-case-conflict
       - id: check-merge-conflict
-      - id: check-added-large-files
       - id: check-yaml
-      - id: check-added-large-files
       - id: end-of-file-fixer
       - id: fix-byte-order-marker
       - id: mixed-line-ending
@@ -17,9 +15,3 @@ repos:
     rev: v0.3.7
     hooks:
       - id: fprettify
-
-  - repo: https://github.com/qiaojunfeng/pre-commit-julia-format
-    rev: v0.2.0
-    hooks:
-    - id: julia-format
-      files: \.jl$
